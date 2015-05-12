@@ -1,0 +1,34 @@
+{
+  "name": "teo-html-compressor-extension",
+  "version": "0.0.1",
+  "description": "HTML output compressor extension for Teo.js framework.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antyfive/teo-html-compressor-extension.git"
+  },
+  "keywords": [
+    "teo.js",
+    "teo",
+    "extension",
+    "middleware",
+    "rest",
+    "restful",
+    "modules",
+    "compressor",
+    "html",
+    "minify"
+  ],
+  "author": {
+    "name": "Andrew Teologov",
+    "email": "teologov.and@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Antyfive/teo-html-compressor-extension/issues"
+  },
+  "homepage": "https://github.com/Antyfive/teo-html-compressor-extension#readme"
+}
