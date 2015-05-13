@@ -123,7 +123,7 @@ module.exports = {
                     if (typeof data === "string") {
                         data = new Buffer(compressor.compressHTML(data), encoding);
                     }
-                    end(data);
+                    end.call(res, data, encoding);
                 };
             }
 
