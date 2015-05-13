@@ -122,7 +122,6 @@ module.exports = {
                 res.end = function(data, encoding) {
                     if (typeof data === "string") {
                         data = new Buffer(compressor.compressHTML(data), encoding);
-                        res.setHeader('Content-Length', data.length);
                     }
                     end(data);
                 };
