@@ -118,12 +118,26 @@ module.exports = {
 
         app.middleware(function(req, res, next) {
             if (req.headers.accept && req.headers.accept.match("text/html")) {
-                var end = res.end;
-                res.end = function(data, encoding) {
-                    if (typeof data === "string") {
-                        data = new Buffer(compressor.compressHTML(data), encoding);
+                var end = res.end,
+                    writeHead = res.writeHead,
+                    code,
+                    headersObj = {};
+
+                res.writeHead = function(_code, _headersObj) {
+                    code = _code;
+                    headersObj = _headersObj;
+                };
+
+                res.end = function(body, encoding) {
+                    if (typeof body === "string") {
+                        body = new Buffer(compressor.compressHTML(body), encoding);
+                        headersObj["Content-Length"] = body.length; // update this header with new length
                     }
-                    end.call(res, data, encoding);
+
+                    if (code && headersObj) {
+                        writeHead.call(res, code, headersObj);
+                    }
+                    end.call(res, body, encoding);
                 };
             }
 

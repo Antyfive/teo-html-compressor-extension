@@ -1,6 +1,6 @@
 {
   "name": "teo-html-compressor-extension",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "HTML output compressor extension for Teo.js framework.",
   "main": "index.js",
   "scripts": {
