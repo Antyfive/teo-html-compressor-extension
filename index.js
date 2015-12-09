@@ -4,12 +4,14 @@
  * @date 5/12/15
  */
 
+"use strict";
+
 /**
  * Compressor of the output html
  * @returns {Compressor}
  * @constructor
  */
-var Compressor = function() {
+function Compressor() {
     var self = this;
     var regexps = [/[\n\r\t]+/g, /\s{2,}/g];
 
@@ -113,35 +115,35 @@ var Compressor = function() {
 };
 
 module.exports = {
-    extension: function(app) {
-        var compressor = new Compressor();
+    extension(app) {
+        let compressor = new Compressor();
 
-        app.middleware(function(req, res, next) {
-            if (req.headers.accept && req.headers.accept.match("text/html")) {
-                var end = res.end,
-                    writeHead = res.writeHead,
+        app.middleware(function* (next) {
+            if (this.req.headers.accept && this.req.headers.accept.match("text/html")) {
+                let end = this.res.end,
+                    writeHead = this.res.writeHead,
                     code,
                     headersObj = {};
 
-                res.writeHead = function(_code, _headersObj) {
+                this.res.writeHead = (_code, _headersObj) => {
                     code = _code;
                     headersObj = _headersObj;
                 };
 
-                res.end = function(body, encoding) {
+                this.res.end = (body, encoding) => {
                     if (typeof body === "string") {
                         body = new Buffer(compressor.compressHTML(body), encoding);
                         headersObj["Content-Length"] = body.length; // update this header with new length
                     }
 
                     if (code && headersObj) {
-                        writeHead.call(res, code, headersObj);
+                        writeHead.call(this.res, code, headersObj);
                     }
-                    end.call(res, body, encoding);
+                    end.call(this.res, body, encoding);
                 };
             }
 
-            next();
+            yield next;
         });
     }
 };

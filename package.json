@@ -1,6 +1,6 @@
 {
   "name": "teo-html-compressor-extension",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "HTML output compressor extension for Teo.js framework.",
   "main": "index.js",
   "scripts": {
@@ -30,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/Antyfive/teo-html-compressor-extension/issues"
   },
-  "homepage": "https://github.com/Antyfive/teo-html-compressor-extension#readme"
+  "homepage": "https://github.com/Antyfive/teo-html-compressor-extension#readme",
+  "engines": {
+    "node": ">= 4"
+  }
 }
